@@ -154,8 +154,8 @@ break;
 }
 printf("\n  Enter Y to continue and N to Exit (Y/N) ? ");
 scanf("%c",&s1);
-scanf("%c",&s2);
-}while((s2=='y')||(s2=='Y'));
+
+}while((s1=='y')||(s1=='Y'));
 }
 
 
