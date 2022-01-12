@@ -1,15 +1,15 @@
 #include<stdio.h>
 
 int q[20],top=-1,front=-1,rear=-1,a[20][20],visited[20],stack[20];
-/*
-int delete();
-void add(int item);
-void bfs(int s,int n);
-void dfs(int s,int n);
-void push(int item);
-int pop();*/
 
-//**************BFS(breadth-first search) code**************//
+
+
+
+
+
+
+
+//BFS(breadth-first search) code
 void bfs(int s,int n)
 {
 int p,i;
@@ -64,7 +64,7 @@ return(k);
 }
 
 
-//***************DFS(depth-first search) code******************//
+//DFS(depth-first search) code//
 void dfs(int s,int n)
 {
 int i,k;
@@ -137,10 +137,10 @@ do
 {
 for(i=1;i<=n;i++)
 visited[i]=0;
-printf("\nMENU");
+
 printf("\n1.BFS Traversal ");
 printf("\n2.DFS Traversal ");
-printf("\nENTER YOUR CHOICE : ");
+printf("\nEnter Your Choice : ");
 scanf("%d",&choice);
 printf("Enter the Starting Vertex : ");
 scanf("%d",&v);
