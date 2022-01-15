@@ -1,15 +1,45 @@
 #include<stdio.h>
 
-int q[20],top=-1,front=-1,rear=-1,a[20][20],visited[20],stack[20];
+int q[20],top=-1,front=-1,rear=-1,a[20][20],visited[20],stack[20],N,v;
+
+void AdjacencyMatrix()            // Function to Create the Graph
+{
+    int i,j;
+    printf("\nEnter No. of Vertices : ");
+    scanf("%d",&N);
+    for(i=1;i<=N;i++)
+    {
+    for(j=1;j<=N;j++)
+    {
+    printf("Press 0 if %d is not connected to %d if not 1 : ",i,j);
+    scanf("%d",&a[i][j]);
+    }
+    }
+    printf("Adjacency Matrix created by the above given connections between vertices : \n");
+    for(i=1;i<=N;i++)
+    {
+    for(j=1;j<=N;j++)
+    {
+    printf(" %d",a[i][j]);
+    }
+    printf("\n");
+    }
+
+    for(i=1;i<=N;i++)
+    visited[i]=0;
+
+   printf("Enter the Starting Vertex : ");
+    scanf("%d",&v);
+    if(v<1||v>N)
+      {
+          printf("Invalid Starting Vertex");
+          exit(1);
+      }
+
+}
 
 
-
-
-
-
-
-
-//BFS(breadth-first search) code
+//BFS(breadth-first search) Function
 void bfs(int s,int n)
 {
 int p,i;
@@ -32,11 +62,12 @@ printf(" %d ",p);
 }
 for(i=1;i<=n;i++)
 if(visited[i]==0)
-bfs(i,n);
+//bfs(i,n);
+return ;
 }
 
 
-void add(int item)
+void add(int item)           // Add Function into Queue
 {
 if(rear==19)
 printf("QUEUE FULL");
@@ -51,7 +82,7 @@ else
 q[++rear]=item;
 }
 }
-int delete()
+int delete()                // Delete Function on Queue
 {
 int k;
 if((front>rear)||(front==-1))
@@ -64,7 +95,7 @@ return(k);
 }
 
 
-//DFS(depth-first search) code//
+//DFS(depth-first search) Function//
 void dfs(int s,int n)
 {
 int i,k;
@@ -87,16 +118,19 @@ printf(" %d ",k);
 }
 for(i=1;i<=n;i++)
 if(visited[i]==0)
-dfs(i,n);
+//dfs(i,n);
+return ;
 }
-void push(int item)
+
+void push(int item)          // Push Function on Stack
 {
 if(top==19)
 printf("Stack overflow ");
 else
 stack[++top]=item;
 }
-int pop()
+
+int pop()                   // Pop Function on Queue
 {
 int k;
 if(top==-1)
@@ -111,51 +145,35 @@ return(k);
 
 void main()
 {
-int i,j,n,v,choice;
-char s1,s2;
-printf("Enter No. of Vertices : ");
-scanf("%d",&n);
-for(i=1;i<=n;i++)
-{
-for(j=1;j<=n;j++)
-{
-printf("Press 0 if %d is not connected to %d if not 1 : ",i,j);
-scanf("%d",&a[i][j]);
-}
-}
-printf("Adjacency Matrix created by the above given connections between vertices : \n");
-for(i=1;i<=n;i++)
-{
-for(j=1;j<=n;j++)
-{
-printf(" %d",a[i][j]);
-}
-printf("\n");
-}
+int choice;
 
-do
-{
-for(i=1;i<=n;i++)
-visited[i]=0;
 
-printf("\n1.BFS Traversal ");
-printf("\n2.DFS Traversal ");
-printf("\nEnter Your Choice : ");
-scanf("%d",&choice);
-printf("Enter the Starting Vertex : ");
-scanf("%d",&v);
+while(1)
+  {
+    int choice;
+    printf("\n1.BFS Traversal\n2.DFS Traversal\n3.Exit\nENTER YOUR CHOICE : ");
+    scanf("%d",&choice);
 
-switch(choice)
-{
-case 1:bfs(v,n);
-break;
-case 2:dfs(v,n);
-break;
+    while(1)
+    {
+    if(choice==3) exit(1);      // Exit Function placed to not Enter into AdjacencyMatrix Function
+
+     AdjacencyMatrix();
+
+    if(choice==1)
+    {
+     bfs(v,N);                 //  BFS Function call
+     break;
+    }
+
+    else if(choice==2)
+    {
+     dfs(v,N);                //  DFS Function call
+     break;
+    }
+
+    else printf("choose between 1 to 3 ");
+    }
+  }
 }
-printf("\n  Enter Y to continue and N to Exit (Y/N) ? ");
-scanf("%c",&s1);
-
-}while((s1=='y')||(s1=='Y'));
-}
-
 
